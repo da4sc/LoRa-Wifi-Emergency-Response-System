@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nesso Emergency Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page">
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">CAPSTONE CONTROL CENTRE</div>
+                <h1>LoRa / Wi-Fi Emergency Response System</h1>
+                <p>Nesso N1 emergency monitoring dashboard</p>
+            </div>
+
+            <div class="header-actions">
+                <button id="soundToggle" class="sound-toggle" type="button">
+                    🔊 Alert Sound: ON
+                </button>
+
+                <div id="serverBadge" class="server-badge online">
+                    <span class="dot"></span>
+                    SERVER ONLINE
+                </div>
+            </div>
+        </header>
+
+        <section class="stats stats-five">
+            <article class="stat-card danger">
+                <span>Active emergencies</span>
+                <strong id="activeCount">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span>Acknowledged</span>
+                <strong id="ackCount">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span>Resolved</span>
+                <strong id="resolvedCount">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span>Cancelled</span>
+                <strong id="cancelledCount">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span>Total received</span>
+                <strong id="totalCount">0</strong>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">LIVE ALERTS</div>
+                    <h2>Active emergencies</h2>
+                </div>
+                <button id="testButton" class="secondary-button">Create laptop test alert</button>
+            </div>
+
+            <div id="activeAlerts" class="alert-grid">
+                <div class="empty-state">No active emergency at the moment.</div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">EVENT LOG</div>
+                    <h2>Emergency history</h2>
+                </div>
+                <span id="lastRefresh" class="muted"></span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nesso ID</th>
+                            <th>Emergency time</th>
+                            <th>Battery</th>
+                            <th>Voltage</th>
+                            <th>Wi-Fi RSSI</th>
+                            <th>GPS</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <div class="eyebrow">DEVICE TELEMETRY</div>
+                    <h2>Nesso devices</h2>
+                </div>
+                <span class="muted">Battery, Wi-Fi and GPS refresh automatically</span>
+            </div>
+
+            <div id="deviceGrid" class="device-grid">
+                <div class="empty-state">Waiting for Nesso telemetry...</div>
+            </div>
+        </section>    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
